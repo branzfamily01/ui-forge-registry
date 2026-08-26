@@ -5,7 +5,8 @@ AI-native component workshop + shadcn-compatible GitHub source registry.
 ## What this repository contains
 
 - A GitHub Pages-ready component gallery (`index.html`)
-- 12 original React/TypeScript UI components
+- Beginner-friendly HTML manual (`manual.html`) linked from Settings
+- 30 original React/TypeScript UI components
 - Root `registry.json` compatible with shadcn GitHub Registries
 - AI intent metadata (`metadata/components.json`)
 - Agent guidance (`agents/AGENTS.md`)
@@ -17,22 +18,22 @@ AI-native component workshop + shadcn-compatible GitHub source registry.
 2. Upload **the contents of this folder**, not the ZIP file and not an extra enclosing folder. `index.html` must remain at repository root.
 3. Commit to `main`.
 4. GitHub → Settings → Pages → Build and deployment → Deploy from a branch → `main` / `(root)` → Save.
-5. The gallery will be available at `https://branzfamily01.github.io/ui-forge-registry/`.
+5. The gallery will be available at `https://<owner>.github.io/ui-forge-registry/`.
 
 ## Use as a shadcn GitHub Registry
 
 After the repository is public:
 
 ```bash
-npx shadcn@latest list branzfamily01/ui-forge-registry
-npx shadcn@latest view branzfamily01/ui-forge-registry/spotlight-card
-npx shadcn@latest add branzfamily01/ui-forge-registry/spotlight-card
+npx shadcn@latest list <owner>/ui-forge-registry
+npx shadcn@latest view <owner>/ui-forge-registry/spotlight-card
+npx shadcn@latest add <owner>/ui-forge-registry/spotlight-card
 ```
 
 Validate after editing:
 
 ```bash
-npx shadcn@latest registry validate branzfamily01/ui-forge-registry
+npx shadcn@latest registry validate <owner>/ui-forge-registry
 ```
 
 ## Adding components

@@ -8,6 +8,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/expansion.css" />
   <title>UI Forge — AI-native Component Registry</title>
 </head>
 <body>
@@ -15,6 +16,7 @@
   <header class="topbar">
     <a class="brand" href="#top" aria-label="UI Forge home"><span class="brand-mark">UF</span><span><b>UI Forge</b><small>AI-native registry</small></span></a>
     <nav class="top-actions">
+      <button class="icon-btn" id="settingsBtn" aria-label="設定" title="設定">⚙</button>
       <button class="icon-btn" id="themeBtn" aria-label="テーマ切替">◐</button>
       <a class="soft-btn" href="#how">使い方</a>
       <a class="primary-btn small" href="#library">Browse components</a>
@@ -25,9 +27,9 @@
       <div class="eyebrow">SHADCN REGISTRY · COPY THE CODE · OWN THE COMPONENT</div>
       <h1>美しいUIを、<br><span>自分の資産</span>にする。</h1>
       <p>プレビューして、コードを読み、shadcn CLIで直接追加。さらにAIが「何を作りたいか」から最適な部品を探せる、拡張前提のコンポーネント倉庫です。</p>
-      <div class="hero-actions"><a class="primary-btn" href="#library">12 componentsを見る</a><button class="soft-btn" id="openAiFinder">AI Finderを試す</button></div>
+      <div class="hero-actions"><a class="primary-btn" href="#library">30 componentsを見る</a><button class="soft-btn" id="openAiFinder">AI Finderを試す</button></div>
       <div class="hero-console" aria-label="CLI example"><span>$</span><code id="heroCli">npx shadcn@latest add branzfamily01/ui-forge-registry/spotlight-card</code><button data-copy-target="heroCli">Copy</button></div>
-      <div class="hero-grid"><div class="mini-stat"><strong>12</strong><span>MVP components</span></div><div class="mini-stat"><strong>1</strong><span>GitHub repository</span></div><div class="mini-stat"><strong>0</strong><span>Runtime dependency for docs</span></div><div class="mini-stat"><strong>AI</strong><span>Intent metadata</span></div></div>
+      <div class="hero-grid"><div class="mini-stat"><strong>30</strong><span>Growing components</span></div><div class="mini-stat"><strong>1</strong><span>GitHub repository</span></div><div class="mini-stat"><strong>0</strong><span>Runtime dependency for docs</span></div><div class="mini-stat"><strong>AI</strong><span>Intent metadata</span></div></div>
     </section>
     <section class="shell ai-section" id="ai-finder">
       <div class="section-heading"><div><span class="section-kicker">SIGNATURE</span><h2>AI Component Finder</h2><p>用途を日本語で書くと、metadataから相性のよい部品をローカル検索します。</p></div><span class="status-dot">API不要</span></div>
@@ -45,8 +47,9 @@
     </section>
   </main>
   <footer class="shell footer"><div><b>UI Forge</b><span>Original starter registry · MIT</span></div><div>Inspired by the registry model of shadcn/ui and the workshop philosophy of Componentry.</div></footer>
+  <dialog id="settingsDialog" class="settings-dialog"><div class="settings-panel"><div class="settings-head"><div><span class="section-kicker">SETTINGS</span><h2>設定</h2><p>UI Forgeの使い方・表示・Registry情報をまとめます。</p></div><button class="dialog-close" id="settingsClose" aria-label="閉じる">×</button></div><a class="manual-card" href="manual.html"><span class="manual-icon">?</span><div><b>UI Forge マニュアル</b><span>初心者向け。見る・探す・コピー・CLI・AI活用・部品追加までHTMLで解説。</span></div><strong>開く →</strong></a><div class="settings-grid"><section class="setting-box"><h3>GitHub Registry</h3><label>GitHub名<input id="settingsOwnerInput" value="branzfamily01" spellcheck="false"></label><a href="https://github.com/branzfamily01/ui-forge-registry" target="_blank" rel="noreferrer">GitHubリポジトリを開く ↗</a></section><section class="setting-box"><h3>表示</h3><label>テーマ<select id="themeSelect"><option value="dark">Dark</option><option value="light">Light</option></select></label><p>テーマとGitHub名はこの端末に保存されます。</p></section><section class="setting-box"><h3>データ</h3><button class="danger-soft" id="resetSettingsBtn">ローカル設定をリセット</button><p>コンポーネント自体やGitHub上のデータは削除しません。</p></section><section class="setting-box"><h3>現在の構成</h3><p><b>30 components</b><br>React / TypeScript / Tailwind / Framer Motion<br>GitHub Pages + shadcn Registry</p></section></div></div></dialog>
   <dialog id="componentDialog" class="component-dialog"><div class="dialog-panel"><button class="dialog-close" id="dialogClose" aria-label="閉じる">×</button><div class="dialog-head"><div><span id="dialogCategory" class="section-kicker"></span><h2 id="dialogTitle"></h2><p id="dialogSummary"></p></div></div><div class="dialog-preview" id="dialogPreview"></div><div class="tabs"><button class="tab active" data-tab="install">Install</button><button class="tab" data-tab="code">Code</button><button class="tab" data-tab="ai">AI metadata</button></div><section class="tabpane active" data-pane="install"><p class="hint">公開GitHubリポジトリに置けば、shadcn CLIがrootの <code>registry.json</code> を読んでこのファイルを追加します。</p><div class="codebox"><code id="installCode"></code><button data-copy-target="installCode">Copy</button></div></section><section class="tabpane" data-pane="code"><div class="codebox multiline"><pre id="sourceCode"></pre><button data-copy-target="sourceCode">Copy</button></div></section><section class="tabpane" data-pane="ai"><pre class="metadata" id="metadataCode"></pre></section></div></dialog>
   <div id="toast" class="toast" role="status"></div>
-  <script src="assets/components-data.js"></script><script src="assets/app.js"></script>
+  <script src="assets/components-data.js"></script><script src="assets/components-expansion.js"></script><script src="assets/app.js"></script>
 </body>
 </html>

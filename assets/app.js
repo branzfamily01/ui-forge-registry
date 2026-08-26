@@ -6,6 +6,9 @@ const ownerInput = document.querySelector('#ownerInput');
 const heroCli = document.querySelector('#heroCli');
 const dialog = document.querySelector('#componentDialog');
 const toast = document.querySelector('#toast');
+const settingsDialog = document.querySelector('#settingsDialog');
+const settingsOwnerInput = document.querySelector('#settingsOwnerInput');
+const themeSelect = document.querySelector('#themeSelect');
 let activeCategory = 'All';
 let current = null;
 
@@ -21,19 +24,37 @@ const previewHtml = (type) => ({
   'fab':'<div class="pv-fab">+</div>',
   'tabs':'<div class="pv-tabs"><span>Today</span><span>Week</span><span>All</span></div>',
   'ring':'<div class="pv-ring"></div>',
-  'badge':'<div class="pv-badge">✦ NEW UNLOCK</div>'
+  'badge':'<div class="pv-badge">✦ NEW UNLOCK</div>',
+  'aurora-card':'<div class="pv-aurora"><div><b>Aurora Card</b><span>special content</span></div></div>',
+  'tilt-card':'<div class="pv-tilt"><b>Hover me</b><span>depth + perspective</span></div>',
+  'pulse-button':'<button class="pv-pulse-btn">Start now</button>',
+  'orbit-menu':'<div class="pv-orbit"><b>＋</b><i>⌂</i><i>✦</i><i>☰</i><i>⚙</i></div>',
+  'segment':'<div class="pv-segment"><span>Day</span><span class="on">Week</span><span>Month</span></div>',
+  'ticker':'<div class="pv-ticker">12,840<span> XP</span></div>',
+  'steps':'<div class="pv-steps"><i class="done">✓</i><b></b><i class="done">✓</i><b></b><i class="now">3</i><b></b><i>4</i></div>',
+  'streak':'<div class="pv-streak"><span>🔥</span><b>14</b><small>day streak</small></div>',
+  'achievement-toast':'<div class="pv-achieve"><i>★</i><div><b>実績を解除！</b><span>新しいバッジを獲得</span></div></div>',
+  'celebration':'<div class="pv-celebrate"><button>✓ 完了！</button>'+Array.from({length:9},(_,i)=>`<i style="--i:${i}"></i>`).join('')+'</div>',
+  'glow-input':'<div class="pv-glow-input">検索キーワード</div>',
+  'floating-label':'<div class="pv-float-label"><small>Email</small><span>hello@example.com</span></div>',
+  'loading-dots':'<div class="pv-loading"><i></i><i></i><i></i></div>',
+  'skeleton':'<div class="pv-skeleton"><i></i><b></b><b></b><b></b></div>',
+  'marquee':'<div class="pv-marquee"><div><span>Motion</span><span>React</span><span>AI Native</span><span>Mobile</span><span>Motion</span><span>React</span></div></div>',
+  'typewriter':'<div class="pv-typewriter">Build something delightful<span>▍</span></div>',
+  'empty-state':'<div class="pv-empty"><i>✦</i><b>まだ何もありません</b><span>最初の1件を追加しましょう</span><button>追加</button></div>',
+  'notification':'<div class="pv-notify">🔔<i>3</i></div>'
 }[type] || '<div>Preview</div>');
 
 function owner(){ return (ownerInput.value.trim() || 'branzfamily01').replace(/^@/,''); }
 function cli(name){ return `npx shadcn@latest add ${owner()}/ui-forge-registry/${name}`; }
-function updateOwner(){ localStorage.setItem('uiForgeOwner', ownerInput.value.trim()); heroCli.textContent=cli('spotlight-card'); if(current) document.querySelector('#installCode').textContent=cli(current.name); }
-const savedOwner = localStorage.getItem('uiForgeOwner'); if(savedOwner) ownerInput.value=savedOwner; updateOwner(); ownerInput.addEventListener('input',updateOwner);
+function updateOwner(source='library'){ const value=(source==='settings'?settingsOwnerInput.value:ownerInput.value).trim(); ownerInput.value=value; settingsOwnerInput.value=value; localStorage.setItem('uiForgeOwner', value); heroCli.textContent=cli('spotlight-card'); if(current) document.querySelector('#installCode').textContent=cli(current.name); }
+const savedOwner = localStorage.getItem('uiForgeOwner'); if(savedOwner) ownerInput.value=savedOwner; updateOwner(); ownerInput.addEventListener('input',()=>updateOwner('library')); settingsOwnerInput.addEventListener('input',()=>updateOwner('settings'));
 
 function renderFilters(){ const cats=['All',...new Set(components.map(x=>x.category))]; filters.innerHTML=cats.map(c=>`<button class="${c===activeCategory?'active':''}" data-cat="${c}">${c}</button>`).join(''); filters.querySelectorAll('button').forEach(b=>b.onclick=()=>{activeCategory=b.dataset.cat;renderFilters();render();}); }
 function render(){ const q=searchInput.value.trim().toLowerCase(); const list=components.filter(c=>(activeCategory==='All'||c.category===activeCategory)&&(!q||[c.name,c.title,c.summary,c.category,...c.tags,...c.useFor].join(' ').toLowerCase().includes(q))); grid.innerHTML=list.map(c=>`<article class="component-card"><div class="preview">${previewHtml(c.preview)}</div><div class="card-body"><div class="card-row"><h3>${c.title}</h3><span class="category">${c.category}</span></div><p>${c.summary}</p><div class="card-actions"><button data-open="${c.name}">Open</button><button data-copy="${c.name}">Copy CLI</button></div></div></article>`).join(''); document.querySelector('#emptyState').hidden=!!list.length; grid.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openComponent(b.dataset.open)); grid.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copy(cli(b.dataset.copy))); }
 searchInput.addEventListener('input',render); renderFilters(); render();
 
-function openComponent(name){ current=components.find(c=>c.name===name); if(!current)return; document.querySelector('#dialogCategory').textContent=current.category.toUpperCase(); document.querySelector('#dialogTitle').textContent=current.title; document.querySelector('#dialogSummary').textContent=current.summary; document.querySelector('#dialogPreview').innerHTML=previewHtml(current.preview); document.querySelector('#installCode').textContent=cli(current.name); document.querySelector('#sourceCode').textContent=current.source; document.querySelector('#metadataCode').textContent=JSON.stringify({name:current.name,category:current.category,tags:current.tags,useFor:current.useFor,motion:current.motion,dependency:current.dependency},null,2); dialog.showModal(); }
+async function openComponent(name){ current=components.find(c=>c.name===name); if(!current)return; document.querySelector('#dialogCategory').textContent=current.category.toUpperCase(); document.querySelector('#dialogTitle').textContent=current.title; document.querySelector('#dialogSummary').textContent=current.summary; document.querySelector('#dialogPreview').innerHTML=previewHtml(current.preview); document.querySelector('#installCode').textContent=cli(current.name); document.querySelector('#metadataCode').textContent=JSON.stringify({name:current.name,category:current.category,tags:current.tags,useFor:current.useFor,motion:current.motion,dependency:current.dependency},null,2); document.querySelector('#sourceCode').textContent=current.source||'Loading source…'; dialog.showModal(); if(!current.source){try{const r=await fetch(`registry/components/${current.name}.tsx`);if(!r.ok)throw new Error();current.source=await r.text();document.querySelector('#sourceCode').textContent=current.source}catch{document.querySelector('#sourceCode').textContent='Source preview could not be loaded. GitHub Pages上で再度お試しください。'}} }
 document.querySelector('#dialogClose').onclick=()=>dialog.close(); dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
 document.querySelectorAll('.tab').forEach(tab=>tab.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tabpane').forEach(x=>x.classList.remove('active'));tab.classList.add('active');document.querySelector(`[data-pane="${tab.dataset.tab}"]`).classList.add('active');});
 
@@ -42,13 +63,19 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-copy-targe
 function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>toast.classList.remove('show'),1500)}
 
 const synonymMap={
- '子ども':'children','こども':'children','学習':'learning','勉強':'learning','完了':'completion','達成':'achievement','褒め':'success','成功':'success','経験値':'xp','成長':'progress','進捗':'progress','数字':'number','ダッシュボード':'dashboard','スマホ':'mobile','追加':'add','開始':'start','ナビ':'navigation','切替':'tabs','新着':'new','解除':'unlock','ボタン':'button','カード':'card','目標':'goal'
+ '子ども':'children','こども':'children','学習':'learning','勉強':'learning','完了':'completion','達成':'achievement','褒め':'success','成功':'success','経験値':'xp','成長':'progress','進捗':'progress','数字':'number','ダッシュボード':'dashboard','スマホ':'mobile','追加':'add','開始':'start','ナビ':'navigation','切替':'tabs','新着':'new','解除':'unlock','ボタン':'button','カード':'card','目標':'goal','フォーム':'form','入力':'input','読み込み':'loading','ローディング':'loading','待ち':'loading','通知':'notification','連続':'streak','ストリーク':'streak','メニュー':'menu','空':'empty','実績':'achievement','フィルター':'filter'
 };
 function normalizeIntent(input){let s=input.toLowerCase();Object.entries(synonymMap).forEach(([ja,en])=>{if(s.includes(ja))s+=' '+en});return s}
 function score(c,q){const hay=[c.name,c.title,c.summary,c.category,...c.tags,...c.useFor].join(' ').toLowerCase();const words=normalizeIntent(q).split(/[\s、。,.!！?？]+/).filter(w=>w.length>1);return words.reduce((n,w)=>n+(hay.includes(w)?(c.tags.includes(w)||c.useFor.includes(w)?3:1):0),0)+(q.includes('子')&&c.useFor.includes('children')?4:0)}
 function find(){const q=document.querySelector('#intentInput').value.trim();const out=document.querySelector('#finderResults');if(!q){out.innerHTML='<div class="result-card"><b>用途を書いてください</b><span>例のチップを押しても試せます。</span></div>';return}const ranked=components.map(c=>({c,s:score(c,q)})).sort((a,b)=>b.s-a.s).slice(0,3);out.innerHTML=ranked.map(({c,s},i)=>`<div class="result-card" data-result="${c.name}"><b>${i+1}. ${c.title}</b><span>${c.summary}<br>match score ${s}</span></div>`).join('');out.querySelectorAll('[data-result]').forEach(x=>x.onclick=()=>openComponent(x.dataset.result));}
 document.querySelector('#findBtn').onclick=find;document.querySelectorAll('[data-example]').forEach(b=>b.onclick=()=>{document.querySelector('#intentInput').value=b.dataset.example;find()});document.querySelector('#openAiFinder').onclick=()=>{document.querySelector('#ai-finder').scrollIntoView({behavior:'smooth'});setTimeout(()=>document.querySelector('#intentInput').focus(),500)};
 
-document.querySelector('#themeBtn').onclick=()=>{document.body.classList.toggle('light');localStorage.setItem('uiForgeTheme',document.body.classList.contains('light')?'light':'dark')};if(localStorage.getItem('uiForgeTheme')==='light')document.body.classList.add('light');
+function applyTheme(value){document.body.classList.toggle('light',value==='light');localStorage.setItem('uiForgeTheme',value);themeSelect.value=value}
+const initialTheme=localStorage.getItem('uiForgeTheme')==='light'?'light':'dark';applyTheme(initialTheme);
+document.querySelector('#themeBtn').onclick=()=>applyTheme(document.body.classList.contains('light')?'dark':'light');
+themeSelect.onchange=()=>applyTheme(themeSelect.value);
+document.querySelector('#settingsBtn').onclick=()=>{settingsOwnerInput.value=ownerInput.value;themeSelect.value=document.body.classList.contains('light')?'light':'dark';settingsDialog.showModal()};
+document.querySelector('#settingsClose').onclick=()=>settingsDialog.close();settingsDialog.addEventListener('click',e=>{if(e.target===settingsDialog)settingsDialog.close()});
+document.querySelector('#resetSettingsBtn').onclick=()=>{localStorage.removeItem('uiForgeOwner');localStorage.removeItem('uiForgeTheme');ownerInput.value='branzfamily01';settingsOwnerInput.value='branzfamily01';updateOwner('library');applyTheme('dark');showToast('設定をリセットしました')};
 
 if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
