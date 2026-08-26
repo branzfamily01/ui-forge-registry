@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "title": "UI Forge",
+  "category": "Tools",
+  "summary": "アニメーション付きReact UIをプレビュー・検索・shadcn CLIで再利用できる、AI-nativeなコンポーネントRegistry。",
+  "tags": ["UI", "React", "shadcn", "Component Registry", "AI", "アニメーション"],
+  "color": "blue",
+  "status": "active",
+  "visibility": "public"
+}
