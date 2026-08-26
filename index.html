@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#080a12" />
+  <meta name="description" content="AI-native shadcn compatible component registry" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <title>UI Forge — AI-native Component Registry</title>
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="UI Forge home"><span class="brand-mark">UF</span><span><b>UI Forge</b><small>AI-native registry</small></span></a>
+    <nav class="top-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="テーマ切替">◐</button>
+      <a class="soft-btn" href="#how">使い方</a>
+      <a class="primary-btn small" href="#library">Browse components</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="eyebrow">SHADCN REGISTRY · COPY THE CODE · OWN THE COMPONENT</div>
+      <h1>美しいUIを、<br><span>自分の資産</span>にする。</h1>
+      <p>プレビューして、コードを読み、shadcn CLIで直接追加。さらにAIが「何を作りたいか」から最適な部品を探せる、拡張前提のコンポーネント倉庫です。</p>
+      <div class="hero-actions">
+        <a class="primary-btn" href="#library">12 componentsを見る</a>
+        <button class="soft-btn" id="openAiFinder">AI Finderを試す</button>
+      </div>
+      <div class="hero-console" aria-label="CLI example">
+        <span>$</span><code id="heroCli">npx shadcn@latest add YOUR_GITHUB_NAME/ui-forge-registry/spotlight-card</code><button data-copy-target="heroCli">Copy</button>
+      </div>
+      <div class="hero-grid">
+        <div class="mini-stat"><strong>12</strong><span>MVP components</span></div>
+        <div class="mini-stat"><strong>1</strong><span>GitHub repository</span></div>
+        <div class="mini-stat"><strong>0</strong><span>Runtime dependency for docs</span></div>
+        <div class="mini-stat"><strong>AI</strong><span>Intent metadata</span></div>
+      </div>
+    </section>
+
+    <section class="shell ai-section" id="ai-finder">
+      <div class="section-heading"><div><span class="section-kicker">SIGNATURE</span><h2>AI Component Finder</h2><p>用途を日本語で書くと、metadataから相性のよい部品をローカル検索します。</p></div><span class="status-dot">API不要</span></div>
+      <div class="finder-card">
+        <textarea id="intentInput" rows="3" placeholder="例：小学生向け学習アプリ。問題を解き終えた瞬間に達成感を出して、XPの成長も見せたい"></textarea>
+        <div class="finder-actions"><div class="examples"><button data-example="学習アプリで完了時に褒めたい。子ども向け。XPも見せたい">学習＋達成</button><button data-example="スマホで一番重要な追加操作を迷わず押せるようにしたい">スマホ操作</button><button data-example="ダッシュボードの数字と進捗を見やすくしたい">進捗表示</button></div><button class="primary-btn" id="findBtn">おすすめを探す</button></div>
+        <div id="finderResults" class="finder-results" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="shell library" id="library">
+      <div class="section-heading"><div><span class="section-kicker">LIBRARY</span><h2>Component Workshop</h2><p>完成されたデザインシステムではなく、「ひとつの良い体験」を切り出した部品を増やしていきます。</p></div><label class="repo-owner">GitHub名<input id="ownerInput" value="YOUR_GITHUB_NAME" spellcheck="false" /></label></div>
+      <div class="toolbar"><div class="search"><span>⌕</span><input id="searchInput" placeholder="Search components…" /></div><div id="filters" class="filters"></div></div>
+      <div id="componentGrid" class="component-grid"></div>
+      <div id="emptyState" class="empty" hidden>該当するコンポーネントがありません。</div>
+    </section>
+
+    <section class="shell philosophy" id="how">
+      <div class="section-heading"><div><span class="section-kicker">ARCHITECTURE</span><h2>増やしても崩れない3層構造</h2></div></div>
+      <div class="architecture">
+        <article><span>01</span><h3>Primitive</h3><p>spring、counter、pointer glowなど小さな動き。</p></article>
+        <div class="arrow">→</div>
+        <article><span>02</span><h3>Component</h3><p>ボタン、カード、XP表示など単独で再利用できるUI。</p></article>
+        <div class="arrow">→</div>
+        <article><span>03</span><h3>Block</h3><p>学習完了画面、ダッシュボード等の完成された画面単位。</p></article>
+      </div>
+      <div class="principles">
+        <div><b>Copy-friendly</b><span>コードを自分のプロジェクトへ所有</span></div>
+        <div><b>Simple API</b><span>propsを増やしすぎない</span></div>
+        <div><b>Composition</b><span>巨大な万能部品を作らない</span></div>
+        <div><b>AI metadata</b><span>用途・端末・動きの強さを機械可読化</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer"><div><b>UI Forge</b><span>Original starter registry · MIT</span></div><div>Inspired by the registry model of shadcn/ui and the workshop philosophy of Componentry.</div></footer>
+
+  <dialog id="componentDialog" class="component-dialog">
+    <div class="dialog-panel">
+      <button class="dialog-close" id="dialogClose" aria-label="閉じる">×</button>
+      <div class="dialog-head"><div><span id="dialogCategory" class="section-kicker"></span><h2 id="dialogTitle"></h2><p id="dialogSummary"></p></div></div>
+      <div class="dialog-preview" id="dialogPreview"></div>
+      <div class="tabs"><button class="tab active" data-tab="install">Install</button><button class="tab" data-tab="code">Code</button><button class="tab" data-tab="ai">AI metadata</button></div>
+      <section class="tabpane active" data-pane="install"><p class="hint">公開GitHubリポジトリに置けば、shadcn CLIがrootの <code>registry.json</code> を読んでこのファイルを追加します。</p><div class="codebox"><code id="installCode"></code><button data-copy-target="installCode">Copy</button></div></section>
+      <section class="tabpane" data-pane="code"><div class="codebox multiline"><pre id="sourceCode"></pre><button data-copy-target="sourceCode">Copy</button></div></section>
+      <section class="tabpane" data-pane="ai"><pre class="metadata" id="metadataCode"></pre></section>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="assets/components-data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

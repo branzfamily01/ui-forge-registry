@@ -1,0 +1,199 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ui-forge-registry",
+  "homepage": "https://github.com/YOUR_GITHUB_NAME/ui-forge-registry",
+  "items": [
+    {
+      "name": "spotlight-card",
+      "type": "registry:ui",
+      "title": "Spotlight Card",
+      "description": "ポインター位置を追う光で、カードの重要度を自然に高める。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/spotlight-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/spotlight-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "magnetic-dock",
+      "type": "registry:ui",
+      "title": "Magnetic Dock",
+      "description": "近づいた項目だけが膨らむ、触って気持ちいいナビゲーション。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/magnetic-dock.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/magnetic-dock.tsx"
+        }
+      ]
+    },
+    {
+      "name": "gradient-button",
+      "type": "registry:ui",
+      "title": "Gradient Button",
+      "description": "主要操作を一目で判別できる、光が流れるCTAボタン。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/gradient-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/gradient-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-counter",
+      "type": "registry:ui",
+      "title": "Animated Counter",
+      "description": "数字の変化を滑らかに見せ、進捗や成果を実感させる。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/animated-counter.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/animated-counter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "text-reveal",
+      "type": "registry:ui",
+      "title": "Text Reveal",
+      "description": "文字を順番に立ち上げて、短いメッセージへ視線を集める。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/text-reveal.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/text-reveal.tsx"
+        }
+      ]
+    },
+    {
+      "name": "success-burst",
+      "type": "registry:ui",
+      "title": "Success Burst",
+      "description": "完了直後に短く祝う。操作を邪魔せず達成感だけを残す。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/success-burst.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/success-burst.tsx"
+        }
+      ]
+    },
+    {
+      "name": "xp-counter",
+      "type": "registry:ui",
+      "title": "XP Counter",
+      "description": "経験値の増加を即時表示し、行動を成長へ変換する。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/xp-counter.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/xp-counter.tsx"
+        }
+      ]
+    },
+    {
+      "name": "level-up-card",
+      "type": "registry:ui",
+      "title": "Level Up Card",
+      "description": "レベル到達を大きく見せ、次の目標へ自然につなげる。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/level-up-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/level-up-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "floating-action-button",
+      "type": "registry:ui",
+      "title": "Floating Action Button",
+      "description": "スマホで最重要操作を常に親指の近くへ置く。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/floating-action-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/floating-action-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-tabs",
+      "type": "registry:ui",
+      "title": "Animated Tabs",
+      "description": "選択位置が滑らかに移動し、画面内の現在地を迷わせない。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/animated-tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/animated-tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "progress-ring",
+      "type": "registry:ui",
+      "title": "Progress Ring",
+      "description": "残量と達成率をコンパクトに見せる円形プログレス。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/progress-ring.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/progress-ring.tsx"
+        }
+      ]
+    },
+    {
+      "name": "shimmer-badge",
+      "type": "registry:ui",
+      "title": "Shimmer Badge",
+      "description": "新着・解除・注目を小さな面積で気持ちよく知らせる。",
+      "dependencies": [
+        "framer-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/shimmer-badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/shimmer-badge.tsx"
+        }
+      ]
+    }
+  ]
+}

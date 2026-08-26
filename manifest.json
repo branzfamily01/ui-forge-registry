@@ -1,0 +1,16 @@
+{
+  "name": "UI Forge",
+  "short_name": "UI Forge",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080a12",
+  "theme_color": "#080a12",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
