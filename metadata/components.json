@@ -1,0 +1,273 @@
+[
+  {
+    "name": "spotlight-card",
+    "title": "Spotlight Card",
+    "category": "Cards",
+    "summary": "ポインター位置を追う光で、カードの重要度を自然に高める。",
+    "tags": [
+      "hover",
+      "spotlight",
+      "card",
+      "dashboard",
+      "focus"
+    ],
+    "useFor": [
+      "dashboard",
+      "feature card",
+      "adult",
+      "mobile",
+      "desktop"
+    ],
+    "motion": "medium",
+    "dependency": "framer-motion",
+    "preview": "spotlight"
+  },
+  {
+    "name": "magnetic-dock",
+    "title": "Magnetic Dock",
+    "category": "Navigation",
+    "summary": "近づいた項目だけが膨らむ、触って気持ちいいナビゲーション。",
+    "tags": [
+      "dock",
+      "navigation",
+      "magnetic",
+      "mobile",
+      "desktop"
+    ],
+    "useFor": [
+      "navigation",
+      "launcher",
+      "tool switcher",
+      "mobile",
+      "desktop"
+    ],
+    "motion": "high",
+    "dependency": "framer-motion",
+    "preview": "dock"
+  },
+  {
+    "name": "gradient-button",
+    "title": "Gradient Button",
+    "category": "Actions",
+    "summary": "主要操作を一目で判別できる、光が流れるCTAボタン。",
+    "tags": [
+      "button",
+      "cta",
+      "gradient",
+      "action"
+    ],
+    "useFor": [
+      "primary action",
+      "onboarding",
+      "start",
+      "mobile",
+      "desktop"
+    ],
+    "motion": "low",
+    "dependency": "framer-motion",
+    "preview": "gradient-button"
+  },
+  {
+    "name": "animated-counter",
+    "title": "Animated Counter",
+    "category": "Data Display",
+    "summary": "数字の変化を滑らかに見せ、進捗や成果を実感させる。",
+    "tags": [
+      "counter",
+      "number",
+      "kpi",
+      "progress",
+      "data"
+    ],
+    "useFor": [
+      "kpi",
+      "score",
+      "xp",
+      "progress",
+      "dashboard"
+    ],
+    "motion": "medium",
+    "dependency": "framer-motion",
+    "preview": "counter"
+  },
+  {
+    "name": "text-reveal",
+    "title": "Text Reveal",
+    "category": "Text",
+    "summary": "文字を順番に立ち上げて、短いメッセージへ視線を集める。",
+    "tags": [
+      "text",
+      "reveal",
+      "headline",
+      "intro"
+    ],
+    "useFor": [
+      "hero",
+      "completion message",
+      "headline",
+      "onboarding"
+    ],
+    "motion": "medium",
+    "dependency": "framer-motion",
+    "preview": "text-reveal"
+  },
+  {
+    "name": "success-burst",
+    "title": "Success Burst",
+    "category": "Feedback",
+    "summary": "完了直後に短く祝う。操作を邪魔せず達成感だけを残す。",
+    "tags": [
+      "success",
+      "confetti",
+      "feedback",
+      "complete",
+      "children"
+    ],
+    "useFor": [
+      "task completion",
+      "learning",
+      "children",
+      "habit",
+      "achievement"
+    ],
+    "motion": "high",
+    "dependency": "framer-motion",
+    "preview": "success"
+  },
+  {
+    "name": "xp-counter",
+    "title": "XP Counter",
+    "category": "Gamification",
+    "summary": "経験値の増加を即時表示し、行動を成長へ変換する。",
+    "tags": [
+      "xp",
+      "gamification",
+      "learning",
+      "habit",
+      "children"
+    ],
+    "useFor": [
+      "learning",
+      "habit",
+      "children",
+      "progress",
+      "achievement"
+    ],
+    "motion": "medium",
+    "dependency": "framer-motion",
+    "preview": "xp"
+  },
+  {
+    "name": "level-up-card",
+    "title": "Level Up Card",
+    "category": "Gamification",
+    "summary": "レベル到達を大きく見せ、次の目標へ自然につなげる。",
+    "tags": [
+      "level",
+      "gamification",
+      "achievement",
+      "children",
+      "reward"
+    ],
+    "useFor": [
+      "learning",
+      "children",
+      "achievement",
+      "reward",
+      "milestone"
+    ],
+    "motion": "high",
+    "dependency": "framer-motion",
+    "preview": "level"
+  },
+  {
+    "name": "floating-action-button",
+    "title": "Floating Action Button",
+    "category": "Actions",
+    "summary": "スマホで最重要操作を常に親指の近くへ置く。",
+    "tags": [
+      "fab",
+      "button",
+      "mobile",
+      "action",
+      "floating"
+    ],
+    "useFor": [
+      "mobile",
+      "add",
+      "start",
+      "primary action"
+    ],
+    "motion": "low",
+    "dependency": "framer-motion",
+    "preview": "fab"
+  },
+  {
+    "name": "animated-tabs",
+    "title": "Animated Tabs",
+    "category": "Navigation",
+    "summary": "選択位置が滑らかに移動し、画面内の現在地を迷わせない。",
+    "tags": [
+      "tabs",
+      "navigation",
+      "switch",
+      "mobile",
+      "desktop"
+    ],
+    "useFor": [
+      "navigation",
+      "settings",
+      "dashboard",
+      "mobile",
+      "desktop"
+    ],
+    "motion": "low",
+    "dependency": "framer-motion",
+    "preview": "tabs"
+  },
+  {
+    "name": "progress-ring",
+    "title": "Progress Ring",
+    "category": "Data Display",
+    "summary": "残量と達成率をコンパクトに見せる円形プログレス。",
+    "tags": [
+      "progress",
+      "ring",
+      "goal",
+      "learning",
+      "habit"
+    ],
+    "useFor": [
+      "progress",
+      "learning",
+      "habit",
+      "goal",
+      "dashboard"
+    ],
+    "motion": "medium",
+    "dependency": "framer-motion",
+    "preview": "ring"
+  },
+  {
+    "name": "shimmer-badge",
+    "title": "Shimmer Badge",
+    "category": "Feedback",
+    "summary": "新着・解除・注目を小さな面積で気持ちよく知らせる。",
+    "tags": [
+      "badge",
+      "new",
+      "unlock",
+      "shimmer",
+      "status"
+    ],
+    "useFor": [
+      "unlock",
+      "new item",
+      "status",
+      "achievement"
+    ],
+    "motion": "low",
+    "dependency": "framer-motion",
+    "preview": "badge"
+  }
+]
