@@ -9,7 +9,7 @@ UI Forge is an AI-native, shadcn-compatible component registry.
 - /agents/AGENTS.md — rules for AI coding agents
 
 ## Install
-`npx shadcn@latest add <github-owner>/ui-forge-registry/<component-name>`
+`npx shadcn@latest add branzfamily01/ui-forge-registry/<component-name>`
 
 ## Selection
 Prefer component metadata fields `useFor`, `tags`, and `motion` when choosing a component for a user task.
